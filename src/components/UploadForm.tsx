@@ -2,15 +2,14 @@
 
 import { useState } from "react";
 import { detectParser } from "@/lib/parsers/registry";
-import { clearAllData, importTransactions } from "@/lib/db";
+import { importTransactions } from "@/lib/db";
 import { evaluateParseResult } from "@/lib/importValidation";
 
 interface Props {
   onImported: () => void;
-  showClearAll?: boolean;
 }
 
-export function UploadForm({ onImported, showClearAll = true }: Props) {
+export function UploadForm({ onImported }: Props) {
   const [status, setStatus] = useState<string | null>(null);
 
   async function handleFile(file: File) {
@@ -40,37 +39,17 @@ export function UploadForm({ onImported, showClearAll = true }: Props) {
     }
   }
 
-  async function handleClearAll() {
-    const confirmed = window.confirm(
-      "This will permanently delete all imported transactions and saved merchant/category rules. This cannot be undone. Continue?"
-    );
-    if (!confirmed) return;
-    await clearAllData();
-    setStatus("All data cleared.");
-    onImported();
-  }
-
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2">
-        <input
-          type="file"
-          accept=".csv"
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) handleFile(file);
-          }}
-          className="text-sm text-neutral-300 file:mr-2 file:px-2 file:py-1 file:border file:border-neutral-600 file:bg-neutral-800 file:text-neutral-200"
-        />
-        {showClearAll && (
-          <button
-            onClick={handleClearAll}
-            className="text-sm text-neutral-400 border border-neutral-700 px-2 py-1 hover:bg-neutral-800"
-          >
-            Clear all data
-          </button>
-        )}
-      </div>
+      <input
+        type="file"
+        accept=".csv"
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) handleFile(file);
+        }}
+        className="text-sm text-neutral-300 file:mr-2 file:px-2 file:py-1 file:border file:border-neutral-600 file:bg-neutral-800 file:text-neutral-200"
+      />
       {status && <p className="text-sm text-neutral-400">{status}</p>}
     </div>
   );

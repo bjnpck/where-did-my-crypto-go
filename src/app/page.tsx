@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { UploadForm } from "@/components/UploadForm";
+import { ClearAllButton } from "@/components/ClearAllButton";
 import { FiltersBar } from "@/components/Filters";
 import { SummaryPanel } from "@/components/SummaryPanel";
 import { Breakdowns } from "@/components/Breakdowns";
@@ -81,7 +82,7 @@ export default function Home() {
         <h1 className="text-xl font-semibold text-neutral-100">where did my crypto go?</h1>
         <p className="text-sm text-neutral-500">Private expense tracking for multiple cards.</p>
       </div>
-      <UploadForm onImported={refresh} showClearAll={!isEmpty} />
+      <UploadForm onImported={refresh} />
 
       {!isEmpty && (
         <>
@@ -98,12 +99,15 @@ export default function Home() {
           <SummaryPanel summary={summary} providers={availableProviders} fx={fx} hasEurTransactions={hasEurTransactions} />
           <Breakdowns monthly={monthly} byCategory={byCategory} />
 
-          <button
-            onClick={() => setShowTransactions((v) => !v)}
-            className="self-start text-sm text-neutral-400 border border-neutral-700 px-2 py-1 hover:bg-neutral-800"
-          >
-            {showTransactions ? "[-] hide transactions" : `[+] show transactions (${filtered.length})`}
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setShowTransactions((v) => !v)}
+              className="text-sm text-neutral-400 border border-neutral-700 px-2 py-1 hover:bg-neutral-800"
+            >
+              {showTransactions ? "[-] hide transactions" : `[+] show transactions (${filtered.length})`}
+            </button>
+            <ClearAllButton onCleared={refresh} />
+          </div>
           {showTransactions && (
             <TransactionTable
               transactions={filtered}
