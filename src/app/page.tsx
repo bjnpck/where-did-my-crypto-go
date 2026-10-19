@@ -5,12 +5,10 @@ import { UploadForm } from "@/components/UploadForm";
 import { FiltersBar } from "@/components/Filters";
 import { SummaryPanel } from "@/components/SummaryPanel";
 import { Breakdowns } from "@/components/Breakdowns";
-import { CashbackPanel } from "@/components/CashbackPanel";
 import { TransactionTable } from "@/components/TransactionTable";
 import { applyCategoryToMerchant, getAllTransactions, markReviewed, setTransactionCategory } from "@/lib/db";
-import { cashbackByProvider, totalCashback } from "@/lib/cashback";
 import { monthKey } from "@/lib/format";
-import { getEurUsdRate, sumToUsd, type FxRate } from "@/lib/fx";
+import { getEurUsdRate, type FxRate } from "@/lib/fx";
 import { normalizeMerchantKey } from "@/lib/merchants";
 import { categoryBreakdown, filterTransactions, isCardActivity, monthlyTrend, summarize, type Filters } from "@/lib/spending";
 import type { Provider, Transaction } from "@/lib/schema";
@@ -60,11 +58,6 @@ export default function Home() {
   const byCategory = useMemo(() => categoryBreakdown(filtered, fx), [filtered, fx]);
   const pendingReviewCount = useMemo(() => transactions.filter((t) => t.needsReview).length, [transactions]);
 
-  const cashbackTotal = useMemo(() => totalCashback(filtered), [filtered]);
-  const cashbackTotalUsd = useMemo(() => sumToUsd(cashbackTotal, fx), [cashbackTotal, fx]);
-  const cashbackRateUsd = summary.total > 0 ? (cashbackTotalUsd.usd / summary.total) * 100 : null;
-  const cashbackProviderTotals = useMemo(() => cashbackByProvider(filtered), [filtered]);
-
   async function handleCategoryChange(id: string, category: string) {
     await setTransactionCategory(id, category);
     refresh();
@@ -99,13 +92,6 @@ export default function Home() {
       </div>
 
       <SummaryPanel summary={summary} providers={availableProviders} fx={fx} hasEurTransactions={hasEurTransactions} />
-      <CashbackPanel
-        totalUsd={cashbackTotalUsd.usd}
-        unconverted={cashbackTotalUsd.unconverted}
-        rateUsd={cashbackRateUsd}
-        byProvider={cashbackProviderTotals}
-        providers={availableProviders}
-      />
       <Breakdowns monthly={monthly} byCategory={byCategory} />
 
       <button
