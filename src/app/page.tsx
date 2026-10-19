@@ -7,6 +7,7 @@ import { FiltersBar } from "@/components/Filters";
 import { SummaryPanel } from "@/components/SummaryPanel";
 import { Breakdowns } from "@/components/Breakdowns";
 import { TransactionTable } from "@/components/TransactionTable";
+import { Faq } from "@/components/Faq";
 import { applyCategoryToMerchant, getAllTransactions, markReviewed, setTransactionCategory } from "@/lib/db";
 import { monthKey } from "@/lib/format";
 import { getEurUsdRate, type FxRate } from "@/lib/fx";
@@ -118,6 +119,8 @@ export default function Home() {
           )}
         </>
       )}
+
+      <Faq />
 
       <footer className="text-right text-xs text-neutral-500">
         built by{" "}
