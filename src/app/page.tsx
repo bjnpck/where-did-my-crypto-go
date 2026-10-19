@@ -73,41 +73,54 @@ export default function Home() {
     refresh();
   }
 
+  const isEmpty = transactions.length === 0;
+
   return (
     <main className="max-w-5xl mx-auto p-6 flex flex-col gap-6">
-      <div>
+      <div className="flex flex-col gap-2">
         <h1 className="text-xl font-semibold text-neutral-100">where did my crypto go?</h1>
-        <p className="text-sm text-neutral-500">Track your spending across multiple cards.</p>
+        <p className="text-sm text-neutral-500">Private expense tracking for multiple cards.</p>
       </div>
-      <UploadForm onImported={refresh} />
+      <UploadForm onImported={refresh} showClearAll={!isEmpty} />
 
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <FiltersBar months={months} providers={availableProviders} filters={filters} onChange={setFilters} />
-        <div className="flex items-center gap-3">
-          <label className="text-sm text-neutral-300 flex items-center gap-1">
-            <input type="checkbox" checked={reviewOnly} onChange={(e) => setReviewOnly(e.target.checked)} />
-            review flagged ({pendingReviewCount})
-          </label>
-        </div>
-      </div>
+      {!isEmpty && (
+        <>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <FiltersBar months={months} providers={availableProviders} filters={filters} onChange={setFilters} />
+            <div className="flex items-center gap-3">
+              <label className="text-sm text-neutral-300 flex items-center gap-1">
+                <input type="checkbox" checked={reviewOnly} onChange={(e) => setReviewOnly(e.target.checked)} />
+                review flagged ({pendingReviewCount})
+              </label>
+            </div>
+          </div>
 
-      <SummaryPanel summary={summary} providers={availableProviders} fx={fx} hasEurTransactions={hasEurTransactions} />
-      <Breakdowns monthly={monthly} byCategory={byCategory} />
+          <SummaryPanel summary={summary} providers={availableProviders} fx={fx} hasEurTransactions={hasEurTransactions} />
+          <Breakdowns monthly={monthly} byCategory={byCategory} />
 
-      <button
-        onClick={() => setShowTransactions((v) => !v)}
-        className="self-start text-sm text-neutral-400 border border-neutral-700 px-2 py-1 hover:bg-neutral-800"
-      >
-        {showTransactions ? "[-] hide transactions" : `[+] show transactions (${filtered.length})`}
-      </button>
-      {showTransactions && (
-        <TransactionTable
-          transactions={filtered}
-          onCategoryChange={handleCategoryChange}
-          onApplyToMerchant={handleApplyToMerchant}
-          onMarkReviewed={handleMarkReviewed}
-        />
+          <button
+            onClick={() => setShowTransactions((v) => !v)}
+            className="self-start text-sm text-neutral-400 border border-neutral-700 px-2 py-1 hover:bg-neutral-800"
+          >
+            {showTransactions ? "[-] hide transactions" : `[+] show transactions (${filtered.length})`}
+          </button>
+          {showTransactions && (
+            <TransactionTable
+              transactions={filtered}
+              onCategoryChange={handleCategoryChange}
+              onApplyToMerchant={handleApplyToMerchant}
+              onMarkReviewed={handleMarkReviewed}
+            />
+          )}
+        </>
       )}
+
+      <footer className="text-right text-xs text-neutral-500">
+        built by{" "}
+        <a href="https://x.com/bjnpck" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300">
+          bjnpck
+        </a>
+      </footer>
     </main>
   );
 }

@@ -7,9 +7,10 @@ import { evaluateParseResult } from "@/lib/importValidation";
 
 interface Props {
   onImported: () => void;
+  showClearAll?: boolean;
 }
 
-export function UploadForm({ onImported }: Props) {
+export function UploadForm({ onImported, showClearAll = true }: Props) {
   const [status, setStatus] = useState<string | null>(null);
 
   async function handleFile(file: File) {
@@ -61,12 +62,14 @@ export function UploadForm({ onImported }: Props) {
           }}
           className="text-sm text-neutral-300 file:mr-2 file:px-2 file:py-1 file:border file:border-neutral-600 file:bg-neutral-800 file:text-neutral-200"
         />
-        <button
-          onClick={handleClearAll}
-          className="text-sm text-neutral-400 border border-neutral-700 px-2 py-1 hover:bg-neutral-800"
-        >
-          Clear all data
-        </button>
+        {showClearAll && (
+          <button
+            onClick={handleClearAll}
+            className="text-sm text-neutral-400 border border-neutral-700 px-2 py-1 hover:bg-neutral-800"
+          >
+            Clear all data
+          </button>
+        )}
       </div>
       {status && <p className="text-sm text-neutral-400">{status}</p>}
     </div>
