@@ -81,7 +81,7 @@ export default function Home() {
     <main className="max-w-5xl mx-auto p-6 flex flex-col gap-6">
       <div className="flex flex-col gap-2">
         <h1 className="text-xl font-semibold text-neutral-100">where did my crypto go?</h1>
-        <p className="text-sm text-neutral-500">Private expense tracking for multiple cards.</p>
+        <p className="text-sm text-neutral-500">Private expense tracker for multiple cards.</p>
       </div>
       <UploadForm onImported={refresh} />
 
