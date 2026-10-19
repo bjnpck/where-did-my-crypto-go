@@ -1,0 +1,7 @@
+Date,Card,Merchant,Location,Amount (EUR),Amount (local),Currency,Status,Reason,Transaction ID
+2026-10-03,5469,Kit Go 70 Taftalidje,Skopje • Macedonia,-18.01,-110300,MKD,Approved,,1000000000000000001
+2026-10-02,5469,Dm Drogerie Markt 5,Skopje • Macedonia,-1.12,-6900,MKD,Approved,,1000000000000000002
+2026-09-22,5469,Netflix Com,Los Gatos • Netherlands,-7.99,-7.99,EUR,Declined,No funds,1000000000000000003
+2026-08-14,5469,Gorgiev Invest Dooel,Skopje • Macedonia,+2.35,+14400,MKD,Refunded,,1000000000000000004
+2026-09-05,5469,Weird Pending Thing,Skopje • Macedonia,-5.00,-30700,MKD,Pending,,1000000000000000005
+2026-09-06,5469,Not A Number Merchant,Skopje • Macedonia,not-a-number,,MKD,Approved,,1000000000000000006

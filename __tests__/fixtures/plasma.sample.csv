@@ -1,0 +1,6 @@
+﻿date,type,description,transaction_hash,amount_usd,amount_usd_currency,amount_local,amount_local_currency,fx_rate,fee,fee_currency
+2026-01-15 19:43:39,Card purchase,Market,,-60.53,USD,-51.21,EUR,0.846,0.30,USD
+2026-01-16 13:35:17,Card cashback,Rebate · Acme,,8.33,USD,,,,,
+2026-01-17 23:20:10,Receive,0xa8287b95d6a5e5504adc79f0b8de82aa121bdbf3,0x8956972d646dd2af8cf31d387116e82344c50cce559f4a7db345978d6a2ccb60,500.00,USD,,,,,
+2026-01-18 09:10:40,Send,0xB332081Ef9402315869989dAEAc0705b4222Fadd,0xebdd3bb8154233831db72eb569a9a117da2027b10f76c5d61a71abd1091c05c2,-50.00,USD,,,,,
+2026-01-19 10:00:00,Staking reward,Unknown program,,1.00,USD,,,,,

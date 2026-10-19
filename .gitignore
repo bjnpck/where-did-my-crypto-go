@@ -1,0 +1,12 @@
+node_modules
+.next
+.next-stale-*
+next-env.d.ts
+.DS_Store
+.env
+.env.*
+
+# Real provider exports — personal financial data, never committed.
+# Anonymized fixtures used by tests live in __tests__/fixtures/ instead.
+src/lib/parsers/__fixtures__/etherfi.sample.csv
+src/lib/parsers/__fixtures__/plasma.sample.csv
