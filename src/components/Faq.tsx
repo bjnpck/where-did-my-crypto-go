@@ -11,6 +11,10 @@ const ENTRIES = [
     q: "dis private?",
     a: "yes, stored locally in your browser",
   },
+  {
+    q: "how to?",
+    a: "export txs csv. upload.",
+  },
 ];
 
 export function Faq() {
