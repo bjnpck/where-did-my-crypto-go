@@ -127,6 +127,7 @@ export default function Home() {
         <a href="https://x.com/bjnpck" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300">
           bjnpck
         </a>
+        <span>|</span>
         <a
           href="https://github.com/bjnpck/where-did-my-crypto-go"
           target="_blank"
