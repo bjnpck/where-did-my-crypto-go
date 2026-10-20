@@ -28,3 +28,7 @@ A privacy-first expense tracker that combines spending across multiple crypto de
 - Simple: no unnecessary features
 - Accurate: spending must reconcile with source statements
 - Never guess: ambiguous data is flagged for review, not classified on a hunch
+
+## License
+
+Source available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md). Use, modification, and distribution are permitted for noncommercial purposes only; commercial use requires separate permission from the copyright holder.
